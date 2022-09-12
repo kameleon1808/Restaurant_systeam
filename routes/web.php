@@ -1,17 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BossController;
+use App\Http\Controllers\Deliverer\DelivererController; //
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\WaiterController;
-use App\Http\Controllers\StateController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Waiter\WaiterController;
+use App\Http\Controllers\State\StateController;
 use App\Http\Controllers\Waiter\OrderController;
 use App\Http\Controllers\Legal\LegalController;
 use App\Http\Controllers\State\OrdersController;
 use App\Http\Controllers\HomeGuestController;
 use App\Http\Controllers\NotificationSendController;
 use App\Http\Controllers\RestBoss\RestBossController;
+use App\Http\Controllers\State\StateController as StateStateController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -45,15 +46,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('boss')->name('boss.')->group(function () {
     Route::middleware(['isBoss', 'auth'])->group(function () {
-        Route::get('home', [BossController::class, 'index'])->name('index');
-        Route::get('home', [BossController::class, 'showOrder'])->name('showOrder');
-        Route::post('/accept-order', [BossController::class, 'acceptOrder'])->name('acceptOrder');
-        Route::post('/send-location', [BossController::class, 'sendLocation'])->name('sendLocation');
-        Route::post('/finish-delivery', [BossController::class, 'finishDelivery'])->name('finishDelivery');
+        Route::get('home', [DelivererController::class, 'index'])->name('index');
+        Route::get('home', [DelivererController::class, 'showOrder'])->name('showOrder');
+        Route::post('/accept-order', [DelivererController::class, 'acceptOrder'])->name('acceptOrder');
+        Route::post('/send-location', [DelivererController::class, 'sendLocation'])->name('sendLocation');
+        Route::post('/finish-delivery', [DelivererController::class, 'finishDelivery'])->name('finishDelivery');
 
-        Route::post('location', [BossController::class, 'location'])->name('location');
+        Route::post('location', [DelivererController::class, 'location'])->name('location');
 
-        Route::post('/logout', [BossController::class, 'logout'])->name('logout');
+        Route::post('/logout', [DelivererController::class, 'logout'])->name('logout');
     });
 });
 //-----------------------------------------------------------------------------------------------------
