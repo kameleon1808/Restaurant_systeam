@@ -85,6 +85,7 @@
 
         <main class="py-4">
             <div class="container">
+                //===========================================
                 @yield('content')
                 @yield('home')
                 @yield('address')
@@ -120,7 +121,7 @@
                 @yield('month-amount-h')
                 @yield('year-amount-h')
                 @yield('users-amount-h')
-
+                //===========================================
             </div>
 
 

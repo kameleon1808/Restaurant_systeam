@@ -13,6 +13,9 @@ use App\Http\Controllers\HomeGuestController;
 use App\Http\Controllers\NotificationSendController;
 use App\Http\Controllers\RestBoss\RestBossController;
 use App\Http\Controllers\State\StateController as StateStateController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\OrderController as UserOrderController;
+use App\Http\Controllers\User\ShopController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -37,12 +40,39 @@ Route::get('login-konobar', [HomeGuestController::class, 'loginWaiter'])->name('
 Route::get('login-sef', [HomeGuestController::class, 'loginBoss'])->name('loginBoss');
 Route::get('login-stanje', [HomeGuestController::class, 'loginState'])->name('loginState');
 Route::get('login-rest-boss', [HomeGuestController::class, 'loginRestBoss'])->name('loginRestBoss');
-
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::prefix('user')->name('user.')->group(function () {
+    Route::middleware(['isUser', 'auth'])->group(function () {
+        Route::get('home', [UserController::class, 'index'])->name('index');
+        Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+        Route::get('/shop/{slug}', [ShopController::class, 'show'])->name('shop.show');
+        Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+        Route::post('/store', [CartController::class, 'store'])->name('store');
+        Route::post('/remove', [CartController::class, 'remove'])->name('remove');
+        Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+        Route::get('/edit-cart/{id}', [CartController::class, 'edit'])->name('edit');
+        Route::put('update-cart/{id}', [CartController::class, 'update']);
+
+
+        Route::get('/order', [UserOrderController::class, 'show']);
+        Route::post('/locate', [UserOrderController::class, 'locate'])->name('locate');
+        Route::post('/cancel', [UserOrderController::class, 'cancel'])->name('cancel');
+        Route::post('/create', [UserOrderController::class, 'create'])->name('create');
+    });
+});
+//-----------------------------------------------------------------------------------------------------
+Route::prefix('legal')->name('legal.')->group(function () {
+    Route::middleware(['isLegal', 'auth'])->group(function () {
+        Route::get('home', [LegalController::class, 'index'])->name('index');
+        Route::post('/logout', [LegalController::class, 'logout'])->name('logout');
+        Route::get('/shop/{slug}', [ShopController::class, 'show'])->name('shop.show');
+    });
+});
+//-----------------------------------------------------------------------------------------------------
 
 Route::prefix('boss')->name('boss.')->group(function () {
     Route::middleware(['isBoss', 'auth'])->group(function () {
@@ -77,17 +107,6 @@ Route::prefix('rest-boss')->name('rest-boss.')->group(function () {
     });
 });
 //-----------------------------------------------------------------------------------------------------
-Route::prefix('user')->name('user.')->group(function () {
-    Route::middleware(['isUser', 'auth'])->group(function () {
-        Route::get('home', [UserController::class, 'index'])->name('index');
-        Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-
-
-        Route::post('/store-token', [NotificationSendController::class, 'updateDeviceToken'])->name('store.token');
-        Route::post('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
-    });
-});
-//-----------------------------------------------------------------------------------------------------
 Route::prefix('waiter')->name('waiter.')->group(function () {
     Route::middleware(['isWaiter', 'auth'])->group(function () {
         Route::get('home', [WaiterController::class, 'index'])->name('index');
@@ -113,15 +132,6 @@ Route::prefix('state')->name('state.')->group(function () {
         Route::get('/korisnici-prihodi', [OrdersController::class, 'users'])->name('users');
 
         Route::get('/porudzbine', [OrderController::class, 'showOrders'])->name('orders');
-    });
-});
-//-----------------------------------------------------------------------------------------------------
-Route::prefix('legal')->name('legal.')->group(function () {
-    Route::middleware(['isLegal', 'auth'])->group(function () {
-        Route::get('home', [LegalController::class, 'index'])->name('index');
-        Route::post('/logout', [LegalController::class, 'logout'])->name('logout');
-
-        // Route::get('/porudzbine', [OrderController::class, 'showOrders'])->name('orders');
     });
 });
 //-----------------------------------------------------------------------------------------------------
