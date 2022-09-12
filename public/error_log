@@ -1,0 +1,3 @@
+[24-Jul-2022 23:54:43 Europe/Sofia] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 8.0.21. in /home/pepenerors/dostava.pepenero.rs/vendor/composer/platform_check.php on line 24
+[02-Aug-2022 19:42:36 UTC] PHP Fatal error:  Cannot declare class App\Http\Livewire\Orders, because the name is already in use in /home/pepenerors/dostava.pepenero.rs/app/Http/Livewire/Requests.php on line 0
+[02-Aug-2022 19:42:37 UTC] PHP Fatal error:  Cannot declare class App\Http\Livewire\Orders, because the name is already in use in /home/pepenerors/dostava.pepenero.rs/app/Http/Livewire/Requests.php on line 0
