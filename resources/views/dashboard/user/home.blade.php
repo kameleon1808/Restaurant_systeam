@@ -4,7 +4,7 @@
     <!-- BUTTON =============================-->
     <div class="item content">
         <div class="container text-center">
-            <a href="shop.html" class="homebrowseitems">Browse All Products
+            <a href="{{ url('user/shop') }}" class="homebrowseitems">Browse All Products
                 <div class="homebrowseitemsicon">
                     <i class="fa fa-star fa-spin"></i>
                 </div>
