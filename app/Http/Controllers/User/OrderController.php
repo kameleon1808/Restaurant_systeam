@@ -93,6 +93,7 @@ class OrderController extends Controller
                 ->whereRaw('created_at >= now() - interval 55 minute')
                 ->latest('created_at')
                 ->get();
+            // dd($data, $order_loc);
 
             return view('dashboard.user.order', compact('user', 'data', 'order_loc'));
         } catch (Exception $exception) {

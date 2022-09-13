@@ -50,6 +50,10 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
         Route::get('/shop/{slug}', [ShopController::class, 'show'])->name('shop.show');
         Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+        Route::get('/order', [UserOrderController::class, 'show'])->name('order');
+        Route::post('/locate', [UserOrderController::class, 'locate'])->name('locate');
+        Route::post('/cancel', [UserOrderController::class, 'cancel'])->name('cancel');
+        Route::post('/create', [UserOrderController::class, 'create'])->name('create');
         Route::post('/store', [CartController::class, 'store'])->name('store');
         Route::post('/remove', [CartController::class, 'remove'])->name('remove');
         Route::post('/logout', [UserController::class, 'logout'])->name('logout');
@@ -58,10 +62,11 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::put('update-cart/{id}', [CartController::class, 'update']);
 
 
-        Route::get('/order', [UserOrderController::class, 'show']);
-        Route::post('/locate', [UserOrderController::class, 'locate'])->name('locate');
-        Route::post('/cancel', [UserOrderController::class, 'cancel'])->name('cancel');
-        Route::post('/create', [UserOrderController::class, 'create'])->name('create');
+        Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+        Route::post('/updateInformation', [UserController::class, 'updateInformation'])->name('updateInformation');
+
+        Route::post('update-pwd', [UserController::class, 'update'])->name('update');
+        Route::post('/delete', [UserController::class, 'delete'])->name('delete');
     });
 });
 //-----------------------------------------------------------------------------------------------------

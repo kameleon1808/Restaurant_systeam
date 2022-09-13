@@ -31,7 +31,7 @@
                             <i class="fa fa-bars"></i>
                             <span class="sr-only">Toggle navigation</span>
                         </button>
-                        <a href="index.html" class="navbar-brand brand"> SCORILO </a>
+                        <a href="index.html" class="navbar-brand brand"> Hello {{ auth()->guard()->user()->name }} </a>
                     </div>
                     <div id="navbar-collapse-02" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -39,8 +39,14 @@
                             <li class="propClone"><a href="{{ url('user/shop') }}">Shop</a></li>
                             {{-- <li class="propClone"><a href="product.html">Article</a></li> --}}
                             <li class="propClone"><a href="{{ url('user/cart') }}">Cart</a></li>
-                            <li class="propClone"><a href="{{ url('user/order') }}">Order</a></li>
+                            <li class="propClone"><a href="{{ route('user.order') }}">Order</a></li>
                             <li class="propClone"><a href="{{ url('user/profile') }}">Profile</a></li>
+                            <li class="propClone"><br>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit">Logout</button>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -70,8 +76,8 @@
     @yield('article')
     @yield('shop')
     @yield('cart')
-
-
+    @yield('order')
+    @yield('profile')
 
 
 
