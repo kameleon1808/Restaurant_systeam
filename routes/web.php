@@ -56,10 +56,11 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::post('/create', [UserOrderController::class, 'create'])->name('create');
         Route::post('/store', [CartController::class, 'store'])->name('store');
         Route::post('/remove', [CartController::class, 'remove'])->name('remove');
+
         Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
         Route::get('/edit-cart/{id}', [CartController::class, 'edit'])->name('edit');
-        Route::put('update-cart/{id}', [CartController::class, 'update']);
+        Route::post('update', [CartController::class, 'update'])->name('update-qty');
 
 
         Route::get('/profile', [UserController::class, 'profile'])->name('profile');

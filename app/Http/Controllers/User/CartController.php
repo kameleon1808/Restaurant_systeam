@@ -39,7 +39,6 @@ class CartController extends Controller
                 ->where('confirmed', 0)
                 ->get();
 
-
             $sum_art = Cart::where('user_id', $user->id)->where('confirmed', 0)->sum('prod_qty');
             $sum_prices = $this->totalPrice();
 
@@ -104,19 +103,21 @@ class CartController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
-            $price = $request->input('price_ed') * $request->input('prod_qty_ed');
+            $article_id = $request->input('article_id');                                        //id artikla
+            $article_price = DB::table('articles')->where('id', $article_id)->first('price');   //jedinicna cena
+            $new_qty = $request->input('new_qty');
+            $price = $request->input('new_qty') * $article_price->price;
+            // dd($request->input('id'));
+            DB::table('carts')->where('id', $request->input('id'))->update(['prod_qty' => $new_qty, 'price' => $price]);
 
-            $data = Cart::find($id);
-            $data->price = $price;
-            $data->prod_qty = $request->input('prod_qty_ed');
-            $data->update();
+
             return redirect('user/cart')->with('status', 'Kolicina izmenjena');
         } catch (Exception $exception) {
-            // dd($exception->getMessage());
-            return view('dashboard.user.nottification', ['prom' => $exception]);
+            dd($exception->getMessage());
+            // return view('dashboard.user.nottification', ['prom' => $exception]);
         }
     }
 }

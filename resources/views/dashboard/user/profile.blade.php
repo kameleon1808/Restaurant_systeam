@@ -47,13 +47,18 @@
                             <label class="edd-label" for="edd-last">Your new password </label>
                             <input class="edd-input" type="password" name="pwd_new" placeholder="******">
 
-
-
-
-
                             <input type="submit" class="edd-submit button" id="edd-purchase-button" name="edd-purchase"
                                 value="Change password">
                         </form>
+
+                        <br>
+
+                        <form action="{{ route('user.delete') }}" method="post">
+                            @csrf
+                            <input type="submit" class="btn btn-danger" name="edd-purchase" value="Delete profile">
+                        </form>
+
+
                     </fieldset>
                 </div>
             </div>

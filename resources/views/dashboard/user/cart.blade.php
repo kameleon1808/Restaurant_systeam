@@ -36,6 +36,9 @@
                                     <th class="edd_cart_actions">
                                         Actions
                                     </th>
+                                    <th class="edd_cart_actions">
+                                        Actions
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,6 +67,20 @@
                                                 <button class="edd_cart_remove_item_btn" type="submit">Remove</button>
                                             </form>
                                         </td>
+
+                                        <td class="edd_cart_actions">
+                                            <form action="{{ route('user.update-qty') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $a->id }}">
+                                                <input type="hidden" name="article_id" value="{{ $a->article_id }}">
+                                                {{-- <input type="hidden" name="price" value="{{ $a->price }}"> --}}
+
+                                                <input type="numeric" name="new_qty" value="{{ $a->prod_qty }}">
+
+                                                <button class="edd_cart_remove_item_btn" type="submit">Change qty</button>
+                                            </form>
+                                        </td>
+
                                         <input type="hidden" name="cart_id[]" value="{{ $a->id }}">
 
                                     </tr>
@@ -121,8 +138,21 @@
                             <input type="hidden" name="edd_action" value="purchase">
                             <input type="hidden" name="edd-gateway" value="manual">
 
-                            <input type="submit" class="edd-submit button" id="edd-purchase-button" name="edd-purchase"
-                                value="Purchase">
+                            @if ($sum_art > 50)
+                                <td>
+                                    <button type="button" class="btn btn-danger">It is not possible to order more than 50
+                                        dishes at the same time</button>
+                                </td>
+                            @elseif ($sum_art == 0)
+                                <td>
+                                    <button type="button" class="btn btn-danger">Cart is empty</button>
+                                </td>
+                            @else
+                                <td>
+                                    <input type="submit" class="edd-submit button" id="edd-purchase-button"
+                                        name="edd-purchase" value="Purchase">
+                                </td>
+                            @endif
 
                         </fieldset>
                         <input type="hidden" name="total_price" value="{{ $sum_prices }}">

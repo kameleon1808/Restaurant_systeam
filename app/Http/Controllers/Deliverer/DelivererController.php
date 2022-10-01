@@ -34,8 +34,9 @@ class DelivererController extends Controller
         $data = OrderLocation::where('boss_id', null)
             ->join('orders', 'orders.id', '=', 'order_locations.order_id')
             ->orWhere('boss_id', $user_id)
-            ->orderBy('orders.order_date', 'desc')
+            ->orderBy('order_locations.created_at', 'desc')
             ->get();
+
         $param2 = $request->input('loc');
         // dd($data);
 

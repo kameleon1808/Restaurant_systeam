@@ -71,7 +71,7 @@ class UserController extends Controller
     {
         try {
             $id = Auth::id();
-            user::where('id', $id)->delete();
+            User::where('id', $id)->delete();
 
             return redirect('/');
         } catch (Exception $exception) {
