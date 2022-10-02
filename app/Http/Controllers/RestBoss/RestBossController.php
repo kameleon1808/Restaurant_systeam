@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class RestBossController extends Controller
 {
@@ -31,6 +32,64 @@ class RestBossController extends Controller
 
         return view('dashboard.rest-boss.home', compact('deliverers', 'waiters', 'states', 'rest_boss',));
     }
+
+    public function addWaiter(Request $request)
+    {
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'role' => 3,
+            'location_id' => 1,
+            'username' => $request->input('username'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function addDeliverer(Request $request)
+    {
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'role' => 1,
+            'location_id' => 1,
+            'username' => $request->input('username'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function addState(Request $request)
+    {
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'role' => 4,
+            'location_id' => 1,
+            'username' => $request->input('username'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function deleteStaff(Request $request)
+    {
+        $id = $request->input('id');
+        // dd($id);
+        DB::table('users')->where('id', $id)->delete();
+
+        return redirect()->back();
+    }
+
     //----------deliverer functions---------------------------------------------------------
     public function showOrder(Request $request)
     {

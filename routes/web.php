@@ -105,6 +105,11 @@ Route::prefix('rest-boss')->name('rest-boss.')->group(function () {
         Route::get('/godisnji-prihodi', [RestBossController::class, 'years'])->name('years');
         Route::get('/korisnici-prihodi', [RestBossController::class, 'users'])->name('users');
 
+        Route::post('/addWaiter', [RestBossController::class, 'addWaiter'])->name('addWaiter');
+        Route::post('/addDeliverer', [RestBossController::class, 'addDeliverer'])->name('addDeliverer');
+        Route::post('/addState', [RestBossController::class, 'addState'])->name('addState');
+        Route::post('/deleteStaff', [RestBossController::class, 'deleteStaff'])->name('deleteStaff');
+
         Route::post('/logout', [RestBossController::class, 'logout'])->name('logout');
     });
 });
