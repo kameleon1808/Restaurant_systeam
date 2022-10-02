@@ -36,13 +36,15 @@ class LoginController extends Controller
     {
         if (Auth()->user()->role == 1) {
             return  redirect()->route('boss.home');
-        } elseif (Auth()->user() == 2) {
-            return  redirect()->route('user.home');
-        } elseif (Auth()->user() == 3) {
+        } elseif (Auth()->user()->role == 2) {
+            return  redirect()->route('user.index');
+        } elseif (Auth()->user()->role == 5) {
+            return  redirect()->route('legal.index');
+        } elseif (Auth()->user()->role == 3) {
             return  redirect()->route('waiter.home');
-        } elseif (Auth()->user() == 4) {
+        } elseif (Auth()->user()->role == 4) {
             return  redirect()->route('state.home');
-        } elseif (Auth()->user() == 6) {
+        } elseif (Auth()->user()->role == 6) {
             return  redirect()->route('rest-boss.home');
         }
     }

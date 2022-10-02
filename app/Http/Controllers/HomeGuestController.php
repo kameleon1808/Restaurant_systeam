@@ -51,23 +51,4 @@ class HomeGuestController extends Controller
     }
     //===========================================================
 
-
-    public function loginWaiter()
-    {
-        return  response()->view('auth.login-waiter');
-    }
-    public function loginBoss()
-    {
-        return  response()->view('auth.login-boss');
-    }
-
-    public function loginState()
-    {
-        return  response()->view('auth.login-state');
-    }
-
-    public function loginRestBoss()
-    {
-        return  response()->view('auth.login-rest-boss');
-    }
 }

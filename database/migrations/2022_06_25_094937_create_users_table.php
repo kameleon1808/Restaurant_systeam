@@ -29,8 +29,6 @@ return new class extends Migration
             $table->bigInteger('location_id')->unsigned()->nullable();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
 
-            $table->text('device_token')->nullable();
-
             $table->string('password');
 
             $table->timestamp('email_verified_at')->nullable();

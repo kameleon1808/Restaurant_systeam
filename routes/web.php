@@ -36,10 +36,6 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomeGuestController::class, 'index']);
 Route::get('address/{address}', [HomeGuestController::class, 'redirectToAddress'])->name('redirectToAddress');
 Route::get('role', [HomeGuestController::class, 'loginOption'])->name('loginOption');
-Route::get('login-konobar', [HomeGuestController::class, 'loginWaiter'])->name('loginWaiter');
-Route::get('login-sef', [HomeGuestController::class, 'loginBoss'])->name('loginBoss');
-Route::get('login-stanje', [HomeGuestController::class, 'loginState'])->name('loginState');
-Route::get('login-rest-boss', [HomeGuestController::class, 'loginRestBoss'])->name('loginRestBoss');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
