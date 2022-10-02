@@ -24,12 +24,13 @@ class HomeGuestController extends Controller
 
     public function index()
     {
-        $restaurants = DB::table('restaurants')
-            ->select('name')
-            ->distinct()
-            ->get();
+        // $restaurants = DB::table('restaurants')
+        //     ->select('name')
+        //     ->distinct()
+        //     ->get();
 
-        return  response()->view('dashboard.home', compact(['restaurants']));
+        // return  response()->view('dashboard.home', compact(['restaurants']));
+        return view('auth.login');
     }
 
     public function redirectToAddress($address)
