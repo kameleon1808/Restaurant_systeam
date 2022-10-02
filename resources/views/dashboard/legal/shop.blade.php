@@ -1,22 +1,12 @@
 @extends('layouts.user')
 
-@section('home-l')
-    <!-- BUTTON =============================-->
-    <div class="item content">
-        <div class="container text-center">
-            <a href="{{ url('legal/shop') }}" class="homebrowseitems">Browse All Products
-                <div class="homebrowseitemsicon">
-                    <i class="fa fa-star fa-spin"></i>
-                </div>
-            </a>
-        </div>
-    </div>
-    <!-- LATEST ITEMS =============================-->
+@section('shop-l')
+    <!-- CONTENT =============================-->
     <section class="item content">
-        <div class="container">
+        <div class="container toparea">
             <div class="underlined-title">
                 <div class="editContent">
-                    <h1 class="text-center latestitems">RANDOM ITEMS</h1>
+                    <h1 class="text-center latestitems">OUR PRODUCTS</h1>
                 </div>
                 <div class="wow-hr type_short">
                     <span class="wow-hr-h">
@@ -27,13 +17,24 @@
                 </div>
             </div>
             <div class="row">
-
                 @foreach ($art as $a)
-                    <!-- /.productbox -->
                     <div class="col-md-4">
                         <div class="productbox">
                             <div class="fadeshop">
-                                <span class="maxproduct"><img src="{{ asset('images/product2-3.jpg') }}"
+                                <div class="captionshop text-center" style="display: none;">
+                                    <h3>{{ $a->name }}</h3>
+                                    <p>
+                                        {{ $a->details }}
+                                    </p>
+                                    <p>
+                                        <a href="#" class="learn-more detailslearn"><i
+                                                class="fa fa-shopping-cart"></i>
+                                            Purchase</a>
+                                        <a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i>
+                                            Details</a>
+                                    </p>
+                                </div>
+                                <span class="maxproduct"><img src="{{ asset('images/product2-2.jpg') }}"
                                         alt=""></span>
                             </div>
                             <div class="product-details">
@@ -41,17 +42,17 @@
                                     <h1>{{ $a->name }}</h1>
                                 </a>
                                 <span class="price">
-                                    <span class="edd_price">{{ $a->price }} RSD</span><br>
-                                    <a href="shop/{{ $a->slug }}" type="button" class="btn btn-info">Info</a>
+                                    <span class="edd_price">{{ $a->price }} RSD</span>
                                 </span>
                             </div>
                         </div>
                     </div>
+                    <!-- /.productbox -->
                 @endforeach
-
 
 
             </div>
         </div>
         </div>
-    @endsection
+    </section>
+@endsection

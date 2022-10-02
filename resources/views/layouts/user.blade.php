@@ -35,17 +35,27 @@
                     </div>
                     <div id="navbar-collapse-02" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="propClone"><a href="{{ url('user/home') }}">Home</a></li>
-                            <li class="propClone"><a href="{{ url('user/shop') }}">Shop</a></li>
-                            {{-- <li class="propClone"><a href="product.html">Article</a></li> --}}
-                            <li class="propClone"><a href="{{ url('user/cart') }}">Cart</a></li>
-                            <li class="propClone"><a href="{{ route('user.order') }}">Order</a></li>
-                            <li class="propClone"><a href="{{ url('user/profile') }}">Profile</a></li>
-                            <li class="propClone"><br>
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <button type="submit">Logout</button>
-                                </form>
+
+                            @if (auth()->guard()->user()->role == 2)
+                                <li class="propClone"><a href="{{ url('user/home') }}">Home</a></li>
+                                <li class="propClone"><a href="{{ url('user/shop') }}">Shop</a></li>
+                                <li class="propClone"><a href="{{ url('user/cart') }}">Cart</a></li>
+                                <li class="propClone"><a href="{{ route('user.order') }}">Order</a></li>
+                                <li class="propClone"><a href="{{ url('user/profile') }}">Profile</a></li>
+                                <li class="propClone"><br>
+                                @elseif (auth()->guard()->user()->role == 5)
+                                <li class="propClone"><a href="{{ url('legal/home') }}">Home</a></li>
+                                <li class="propClone"><a href="{{ url('legal/shop') }}">Shop</a></li>
+                                <li class="propClone"><a href="{{ url('legal/cart') }}">Cart</a></li>
+                                <li class="propClone"><a href="{{ route('legal.order') }}">Order</a></li>
+                                <li class="propClone"><a href="{{ url('legal/profile') }}">Profile</a></li>
+                                <li class="propClone"><br>
+                            @endif
+
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit">Logout</button>
+                            </form>
                             </li>
                         </ul>
                     </div>
@@ -79,6 +89,12 @@
     @yield('order')
     @yield('profile')
 
+    @yield('article-l')
+    @yield('shop-l')
+    @yield('cart-l')
+    @yield('order-l')
+    @yield('profile-l')
+    @yield('home-l')
 
 
     <!-- FOOTER =============================-->

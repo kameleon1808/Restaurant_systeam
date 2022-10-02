@@ -10,6 +10,9 @@ use App\Http\Controllers\Waiter\OrderController;
 use App\Http\Controllers\Legal\LegalController;
 use App\Http\Controllers\State\OrdersController;
 use App\Http\Controllers\HomeGuestController;
+use App\Http\Controllers\Legal\CartController as LegalCartController;
+use App\Http\Controllers\Legal\OrderController as LegalOrderController;
+use App\Http\Controllers\Legal\ShopController as LegalShopController;
 use App\Http\Controllers\NotificationSendController;
 use App\Http\Controllers\RestBoss\RestBossController;
 use App\Http\Controllers\State\StateController as StateStateController;
@@ -70,8 +73,27 @@ Route::prefix('user')->name('user.')->group(function () {
 Route::prefix('legal')->name('legal.')->group(function () {
     Route::middleware(['isLegal', 'auth'])->group(function () {
         Route::get('home', [LegalController::class, 'index'])->name('index');
+        Route::get('/shop', [LegalShopController::class, 'index'])->name('shop.index');
+        Route::get('/shop/{slug}', [LegalShopController::class, 'show'])->name('shop.show');
+        Route::get('/cart', [LegalCartController::class, 'show'])->name('cart.show');
+        Route::get('/order', [LegalOrderController::class, 'show'])->name('order');
+        Route::post('/locate', [LegalOrderController::class, 'locate'])->name('locate');
+        Route::post('/cancel', [LegalOrderController::class, 'cancel'])->name('cancel');
+        Route::post('/create', [LegalOrderController::class, 'create'])->name('create');
+        Route::post('/store', [LegalCartController::class, 'store'])->name('store');
+        Route::post('/remove', [LegalCartController::class, 'remove'])->name('remove');
+
         Route::post('/logout', [LegalController::class, 'logout'])->name('logout');
-        Route::get('/shop/{slug}', [ShopController::class, 'show'])->name('shop.show');
+
+        Route::get('/edit-cart/{id}', [LegalCartController::class, 'edit'])->name('edit');
+        Route::post('update', [LegalCartController::class, 'update'])->name('update-qty');
+
+
+        Route::get('/profile', [LegalController::class, 'profile'])->name('profile');
+        Route::post('/updateInformation', [LegalController::class, 'updateInformation'])->name('updateInformation');
+
+        Route::post('update-pwd', [LegalController::class, 'update'])->name('update');
+        Route::post('/delete', [LegalController::class, 'delete'])->name('delete');
     });
 });
 //-----------------------------------------------------------------------------------------------------

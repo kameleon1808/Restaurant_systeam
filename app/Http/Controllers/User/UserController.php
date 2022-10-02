@@ -58,7 +58,10 @@ class UserController extends Controller
             } else {
                 // return redirect('user/edit-pwd');
                 // return view('dashboard.user.nottification', ['prom' => 'Sifre se ne poklapaju!']);
-                return dd('New password and old password dont match');
+                echo "<script>
+                        alert('New password and old password dont match!');
+                        window.location.href='profile';
+                    </script>";
             }
         } catch (Exception $exception) {
             dd($exception->getMessage());
