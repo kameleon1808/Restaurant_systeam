@@ -66,7 +66,10 @@ class OrderController extends Controller
 
             // Mail::to("dostava.pepenero@gmail.com")->send(new TestMail($datasave));
             $this->empty_cart();
-            return redirect()->back();
+            echo "<script>
+                        alert('Order created!');
+                        window.location.href='/user/order';
+                    </script>";
             // return view('dashboard.user.nottification', ['prom' => 'Vaša porudžbina je kreirana, možete je očekivati uskoro!']);
         } catch (Exception $exception) {
             dd($exception->getMessage());
@@ -132,7 +135,10 @@ class OrderController extends Controller
                 ->where('order_locations.order_id', '=', $order_id)
                 ->update(['order_locations.canceled' => 1]);
 
-            return redirect()->back();
+            echo "<script>
+                        alert('Order canceled!');
+                        window.location.href='/user/order';
+                    </script>";
             // return view('dashboard.user.nottification', ['prom' => 'Porudzbina je otkazana!']);
         } catch (Exception $exception) {
             dd($exception->getMessage());

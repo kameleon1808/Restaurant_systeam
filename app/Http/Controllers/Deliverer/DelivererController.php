@@ -80,7 +80,10 @@ class DelivererController extends Controller
             ->where('order_locations.id', '=', $ord_id)
             ->update(['order_locations.delievered' => 1]);
 
-        return redirect()->back();
+        echo "<script>
+            alert('Order finished!');
+            window.location.href='/boss/home';
+        </script>";
     }
 
     public function location(Request $request)

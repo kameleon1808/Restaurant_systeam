@@ -68,7 +68,10 @@ class CartController extends Controller
             $cartItem->save();
 
             // return view('dashboard.user.nottification', ['prom' => 'Dodali ste artikal u korpu!']);
-            return redirect()->back();
+            echo "<script>
+                        alert('Article added to cart!');
+                        window.location.href='/legal/shop';
+                    </script>";
         } catch (Exception $exception) {
             dd($exception->getMessage());
             // return view('dashboard.legal.nottification', ['prom' => $exception]);
@@ -85,7 +88,10 @@ class CartController extends Controller
 
 
             // return view('dashboard.user.nottification', ['prom' => 'Artikal je izbrisan iz korpe!']);
-            return redirect()->back();
+            echo "<script>
+                        alert('Article removed!');
+                        window.location.href='/legal/cart';
+                    </script>";
         } catch (Exception $exception) {
             dd($exception->getMessage());
             // return view('dashboard.user.nottification', ['prom' => $exception]);
@@ -109,12 +115,23 @@ class CartController extends Controller
             $article_id = $request->input('article_id');                                        //id artikla
             $article_price = DB::table('articles')->where('id', $article_id)->first('price');   //jedinicna cena
             $new_qty = $request->input('new_qty');
-            $price = $request->input('new_qty') * $article_price->price;
-            // dd($request->input('id'));
-            DB::table('carts')->where('id', $request->input('id'))->update(['prod_qty' => $new_qty, 'price' => $price]);
+
+            if ($new_qty == 0) {
+                echo "<script>
+                        alert('Quantity can`t be 0!');
+                        window.location.href='/legal/cart';
+                    </script>";
+            } else {
+                $price = $request->input('new_qty') * $article_price->price;
+                // dd($request->input('id'));
+                DB::table('carts')->where('id', $request->input('id'))->update(['prod_qty' => $new_qty, 'price' => $price]);
 
 
-            return redirect('legal/cart')->with('status', 'Kolicina izmenjena');
+                echo "<script>
+                            alert('Quantity changed!');
+                            window.location.href='/legal/cart';
+                        </script>";
+            }
         } catch (Exception $exception) {
             dd($exception->getMessage());
             // return view('dashboard.user.nottification', ['prom' => $exception]);

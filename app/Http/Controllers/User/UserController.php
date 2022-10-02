@@ -54,7 +54,10 @@ class UserController extends Controller
 
                 // return redirect('user/home')->with('status', 'Sifra izmenjena');
                 // return view('dashboard.user.nottification', ['prom' => 'Sifra izmenjena!']);
-                return redirect()->back();
+                echo "<script>
+                        alert('Password successful changed!');
+                        window.location.href='profile';
+                    </script>";
             } else {
                 // return redirect('user/edit-pwd');
                 // return view('dashboard.user.nottification', ['prom' => 'Sifre se ne poklapaju!']);
@@ -76,7 +79,10 @@ class UserController extends Controller
             $id = Auth::id();
             User::where('id', $id)->delete();
 
-            return redirect('/');
+            echo "<script>
+                        alert('Account is delleted!');
+                        window.location.href='/login';
+                    </script>";
         } catch (Exception $exception) {
             // dd($exception->getMessage());
             return view('dashboard.user.nottification', ['prom' => $exception]);
