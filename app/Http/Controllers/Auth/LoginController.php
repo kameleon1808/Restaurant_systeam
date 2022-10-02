@@ -81,9 +81,15 @@ class LoginController extends Controller
                 return Redirect::to('legal/home');
             } else if (auth()->user()->role == 6) {
                 return Redirect::to('rest-boss/home');
-            } else {
-                return redirect()->route('login')->with('error', 'Nesto ne valja');
             }
+            //  else {
+            //     return redirect()->route('login')->with('error', 'Nesto ne valja');
+            // }
+        } else {
+            echo "<script>
+                        alert('Wrong password or account not exists!');
+                        window.location.href='login';
+                    </script>";
         }
     }
 

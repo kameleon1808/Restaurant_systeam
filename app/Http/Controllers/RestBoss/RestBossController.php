@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderLocation;
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -88,6 +89,35 @@ class RestBossController extends Controller
         DB::table('users')->where('id', $id)->delete();
 
         return redirect()->back();
+    }
+
+    public function update(Request $request)
+    {
+        try {
+            $data = Auth::user();
+            $pwd = $request->input('pwd'); //unesena stara za potvrdu
+            $pwd_new = $request->input('pwd_new'); //novounesena
+
+            if (Hash::check($pwd, $data->password)) {
+                $query = User::where('id', $data->id)->first();
+                $query->password = Hash::make($pwd_new);
+                $query->update();
+
+                // return redirect('user/home')->with('status', 'Sifra izmenjena');
+                // return view('dashboard.user.nottification', ['prom' => 'Sifra izmenjena!']);
+                return redirect()->back();
+            } else {
+                // return redirect('user/edit-pwd');
+                // return view('dashboard.user.nottification', ['prom' => 'Sifre se ne poklapaju!']);
+                echo "<script>
+                        alert('Wrong old password!');
+                        window.location.href='home';
+                    </script>";
+            }
+        } catch (Exception $exception) {
+            dd($exception->getMessage());
+            // return view('dashboard.user.nottification', ['prom' => $exception]);
+        }
     }
 
     //----------deliverer functions---------------------------------------------------------

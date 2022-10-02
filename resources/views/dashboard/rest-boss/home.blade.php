@@ -189,12 +189,27 @@
                         @endforeach
                     </tbody>
                     <tr>
+                        <form action="{{ route('rest-boss.update') }}" method="post">
+                            @csrf
+                            <td>
+                                <input type="password" name="pwd" placeholder="Old password">
+                            </td>
+                            <td>
+                                <input type="password" name="pwd_new" placeholder="New password">
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-success">Change password</button>
+                            </td>
+                        </form>
+                    </tr>
+                    <tr>
                         <td>
                             <form action="{{ route('rest-boss.logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-primary">Logout</button>
                             </form>
                         </td>
+
                     </tr>
                 </table>
                 {{-- //-------------------------------------------------- --}}

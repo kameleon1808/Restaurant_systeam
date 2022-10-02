@@ -109,6 +109,7 @@ Route::prefix('rest-boss')->name('rest-boss.')->group(function () {
         Route::post('/addDeliverer', [RestBossController::class, 'addDeliverer'])->name('addDeliverer');
         Route::post('/addState', [RestBossController::class, 'addState'])->name('addState');
         Route::post('/deleteStaff', [RestBossController::class, 'deleteStaff'])->name('deleteStaff');
+        Route::post('/update', [RestBossController::class, 'update'])->name('update');
 
         Route::post('/logout', [RestBossController::class, 'logout'])->name('logout');
     });
