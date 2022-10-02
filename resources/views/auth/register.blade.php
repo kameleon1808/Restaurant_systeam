@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label for="company_name"
                                         class="col-md-4 col-form-label text-md-end">{{ __('Company name') }}</label>
 
@@ -129,7 +129,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="row mb-3">
                                     <label for="phone"
@@ -170,15 +170,19 @@
                                         class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="role" type="text"
-                                            class="form-control @error('role') is-invalid @enderror" name="role"
-                                            value="{{ old('role') }}" required autofocus>
+                                        <input type="radio" class="role" name="role" type="radio"
+                                            value="5" /> Legal Person
+                                        <input type="radio" class="role" name="role" type="radio"
+                                            value="2" checked /> Natural Person
 
-                                        @error('role')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <table class="table">
+                                            <tr class="colorCars">
+                                                <td>
+                                                    <input type="text" name="company_name" value=""
+                                                        placeholder="Company name" />
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
 
@@ -216,6 +220,31 @@
                                         </button>
                                     </div>
                                 </div>
+                                <script src="http://code.jquery.com/jquery.js"></script>
+
+                                <!-- Latest compiled and minified JavaScript -->
+                                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                                <script>
+                                    $(function() {
+                                        $('.colorCars input').prop({
+                                            readonly: true
+                                        });
+                                        $('.role').click(function() {
+                                            if ($(this).val() == '5') {
+                                                $('.colorCars input').prop({
+                                                    readonly: false,
+                                                    disabled: false
+                                                });
+                                            } else {
+                                                $(' .colorCars input').prop({
+                                                    readonly: false,
+                                                    disabled: true,
+                                                    value: null
+                                                });
+                                            }
+                                        });
+                                    });
+                                </script>
                             </form>
                         </div>
                     </div>
