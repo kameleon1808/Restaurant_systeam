@@ -2,10 +2,9 @@
     {{-- <div> --}}
     Current time: {{ now() }}
 
-    <h1>Deliverer home stranaaaa</h1>
+    <h1>Deliverer home strana</h1>
 
     <h2>{{ auth()->guard()->user()->name }}</h2>
-    <h3>{{ auth()->guard()->user()->id }}</h3>
 
     <form action="{{ route('boss.logout') }}" method="POST">
         @csrf
@@ -40,7 +39,8 @@
                                 <form action="{{ route('boss.acceptOrder') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="ord_id" value="{{ $d->id }}">
-                                    <button type="submit">Prihvati</button>
+                                    <button type="submit" class="btn btn-outline-success"
+                                        data-mdb-ripple-color="dark">Prihvati</button>
                                 </form>
                             @else
                                 <p>//</p>
@@ -50,8 +50,8 @@
                                 <form action="{{ route('boss.location') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="ord_id" value="{{ $d->id }}">
-
-                                    <button type="submit">Posalji lokaciju</button>
+                                    <button type="submit" class="btn btn-outline-primary"
+                                        data-mdb-ripple-color="dark">Posalji lokaciju</button>
                                 </form>
                             @else
                             @endif
@@ -63,7 +63,8 @@
                                 <form action="{{ route('boss.finishDelivery') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="ord_id" value="{{ $d->id }}">
-                                    <button type="submit">Zavrsi isporuku</button>
+                                    <button type="submit" class="btn btn-outline-dark"
+                                        data-mdb-ripple-color="dark">Zavrsi isporuku</button>
                                 </form>
                             @else
                                 <p></p>
@@ -74,7 +75,8 @@
                     </td>
                     <td> {{-- Otkazano --}}
                         @if ($d->canceled == 1)
-                            <p>Otkazana</p>
+                            <button type="button" class="btn btn-outline-danger"
+                                data-mdb-ripple-color="dark">Otkazana</button>
                         @else
                             <p></p>
                         @endif
