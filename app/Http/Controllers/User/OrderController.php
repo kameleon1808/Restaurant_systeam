@@ -114,7 +114,10 @@ class OrderController extends Controller
                 ->where('order_locations.id', '=', $order_loc_id)
                 ->update(['order_locations.request' => 1]);
 
-            return redirect()->back();
+            echo "<script>
+                        alert('Location request send!');
+                        window.location.href='/user/order';
+                    </script>";
             // return view('dashboard.user.nottification', ['prom' => 'Zahtev za lociranje je poslat!']);
         } catch (Exception $exception) {
             dd($exception->getMessage());
