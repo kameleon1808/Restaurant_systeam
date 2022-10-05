@@ -18,31 +18,23 @@
         <thead>
             <th>Datum kreiranja</th>
             <th>Narucilac</th>
-            <th>Dostavljac</th>
             <th>Adresa za isporuku</th>
-
             <th>location</th>
-            <th>Zahtev</th>
             <th>Action</th>
-            <th>Dostavljeno
-            <th>
+            <th>Dostavljeno</th>
             <th>Otkazano</th>
         </thead>
         <tbody>
             @foreach ($data as $d)
                 <tr>
-                    <td>{{ $d->created_at }}</td>
-                    <td>{{ $d->order->name }}</td>
-                    <td>{{ $d->user->name }}</td>
-                    <td>{{ $d->order->shipping_address }} - {{ $d->city }}</td>
-
-                    <td></td>
-                    <td>
+                    <td>{{ $d->created_at }}</td> {{-- Datum kreiranja --}}
+                    <td>{{ $d->order->name }}</td>{{-- Narucilac --}}
+                    <td>{{ $d->order->shipping_address }} - {{ $d->city }}</td>{{-- Adresa za isporuku --}}
+                    <td>{{-- location --}}
                         <a
                             href="https://yandex.ru/maps/?whatshere[point]={{ $d->location }}&whatshere[zoom]=17">{{ $d->location }}</a>
                     </td>
-                    <td>{{ $d->request }}</td>
-                    <td>
+                    <td>{{-- Action --}}
                         @if ($d->boss_id == null)
                             @if ($d->canceled == 0)
                                 <form action="{{ route('boss.acceptOrder') }}" method="post">
@@ -51,7 +43,7 @@
                                     <button type="submit">Prihvati</button>
                                 </form>
                             @else
-                                <p></p>
+                                <p>//</p>
                             @endif
                         @elseif ($d->boss_id != null)
                             @if ($d->request == 1)
@@ -65,14 +57,7 @@
                             @endif
                         @endif
                     </td>
-                    {{-- <td>
-                        @if ($d->request != null)
-                            <button id="btn-start">Zapocni isporuku</button>
-                        @else
-                            <button>Nema zahteva</button>
-                        @endif
-                    </td> --}}
-                    <td>
+                    <td> {{-- Dostavljeno --}}
                         @if ($d->delivered != 1)
                             @if ($d->canceled == 0)
                                 <form action="{{ route('boss.finishDelivery') }}" method="post">
@@ -87,8 +72,7 @@
                             <button>Isporuceno</button>
                         @endif
                     </td>
-                    <td>{{ $d->delievered }}</td>
-                    <td>
+                    <td> {{-- Otkazano --}}
                         @if ($d->canceled == 1)
                             <p>Otkazana</p>
                         @else
