@@ -13,7 +13,7 @@ class Delivery extends Component
     {
         $user_id = auth()->user()->id;
         $data = OrderLocation::where('boss_id', null)
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->orWhere('boss_id', $user_id)
             ->get();
         $param2 = $request->input('loc');
