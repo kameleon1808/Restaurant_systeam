@@ -33,8 +33,9 @@
                     <div class="col-md-4">
                         <div class="productbox">
                             <div class="fadeshop">
-                                <span class="maxproduct"><img src="{{ asset('images/product2-3.jpg') }}"
-                                        alt=""></span>
+                                <span class="maxproduct">
+                                    <img src="{{ asset($a->img) }}" alt="">
+                                </span>
                             </div>
                             <div class="product-details">
                                 <a href="shop/{{ $a->slug }}">

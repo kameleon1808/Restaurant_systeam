@@ -34,8 +34,10 @@
                                             Details</a>
                                     </p>
                                 </div>
-                                <span class="maxproduct"><img src="{{ asset('images/product2-2.jpg') }}"
-                                        alt=""></span>
+                                <span class="maxproduct">
+                                    {{-- <img src="{{ asset('images/product2-2.jpg') }}" alt=""> --}}
+                                    <img src="{{ asset($a->img) }}" alt="">
+                                </span>
                             </div>
                             <div class="product-details">
                                 <a href="shop/{{ $a->slug }}">
