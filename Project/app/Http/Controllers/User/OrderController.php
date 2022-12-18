@@ -24,7 +24,6 @@ class OrderController extends Controller
                 ->update(['carts.confirmed' => 1]);
         } catch (Exception $exception) {
             dd($exception->getMessage());
-            // return view('dashboard.user.nottification', ['prom' => $exception]);
         }
     }
 
@@ -39,9 +38,6 @@ class OrderController extends Controller
                 'comments' => $request->comments,
                 'shipping_address' => $request->address,
                 'name' => auth()->guard()->user()->name,
-                // 'cart_id' => json_encode($cart_id),
-                // 'prod_qty' => json_encode($prod_qty),
-                // 'article_name' => json_encode($article_name)
                 'price' => $request->total_price,
                 'phone' => auth()->guard()->user()->phone,
                 'location_id' => 1,  //============================LAST C
@@ -49,31 +45,20 @@ class OrderController extends Controller
                 'prod_qty' => implode(" - ", $request->prod_qty),
                 'article_name' => implode(" - ", $request->article_name)
             ]);
-
-            // dd($datasave);
-
             $order_loc = OrderLocation::create([
                 'user_id' => $datasave->user_id,
                 'location_id' => 1,
                 'order_id' => $datasave->id,
                 'city' => 'Beograd',
             ]);
-            //---------------------------------------------------------------------------
-            // $userr = User::where('role', 3)->where('location_id', 1)->get();
-            // Notification::send($userr, new OrderNotification);
-            //---------------------------------------------------------------------------
             DB::commit();
-
-            // Mail::to("dostava.pepenero@gmail.com")->send(new TestMail($datasave));
             $this->empty_cart();
             echo "<script>
                         alert('Order created!');
                         window.location.href='/user/order';
                     </script>";
-            // return view('dashboard.user.nottification', ['prom' => 'Vaša porudžbina je kreirana, možete je očekivati uskoro!']);
         } catch (Exception $exception) {
             dd($exception->getMessage());
-            // return view('dashboard.user.nottification', ['prom' => $exception]);
         }
     }
 
