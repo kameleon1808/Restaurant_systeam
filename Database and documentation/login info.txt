@@ -1,0 +1,13 @@
+ 
+-Korisnicka rola : user@gmail.com
+         password:  12345
+-Pravno lice : legal@gmail.com
+         password:  12345
+-Konobar : waiter@gmail.com
+         password:  12345   
+-Menadzer : state@gmail.com
+         password:  12345
+-Dostavljac: deliverer@gmail.com
+         password:  12345
+-Sef : boss@gmail.com
+         password:  12345
