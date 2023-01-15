@@ -1,0 +1,28 @@
+Obavezno pri pisanju celog rada koristiti treće lice jednine neodređeno (na primer obrađeno je, istraženo je, a ne obradio sam, istražio sam).
+Komentar koji je dat, važi za ceo tekst rada i neće biti ponovljen. 
+
+
+Za slike koje nisu čitljive prikazati ih u Landscape modu.
+
+
+Uopštene Napomene:
+⦁	Obavezno pri pisanju celog rada koristiti treće lice jednine neodređeno (na primer obrađeno je, istraženo je, a ne obradila/o sam, istražio/la sam).
+⦁	Detaljno pratiti preuzeto sa studentskog portala Uputstvo za izradu završnog rada (Margine; Paragraph Spacing Before/After; Fonts; Bullets; Numbering i ostale elemente).
+⦁	Aktivirati SpellChecker za srpski jezik za automatsko podvlačenje slovnih i gramatičkih grešaka. 
+⦁	Svaka slika u tekstu rada mora biti pozvana: npr. Na slici 1 je prikazana vodopad metoda razvoja softvera.
+⦁	Pozvati se na izvor u teorijskom delu rada (Uvod i metode) u uglastim zagradama: npr. Proces razvoja softvera prema ovoj metodi obuhvata sledeće faze [1]:
+1.	Specifikacija zahteva (sa kratkim opisom u jednom pasusu)
+2.	Analiza (sa kratkim opisom u jednom pasusu)
+3.	Projektovanje (sa kratkim opisom u jednom pasusu)
+4.	Implementacija (sa kratkim opisom u jednom pasusu)
+5.	Testiranje (sa kratkim opisom u jednom pasusu)
+U datom primeru, u poglavlju Literatura je pod brojem [1] knjiga ili drugi izvor odakle je preuzeta definicija ili nabrajanje.
+⦁	Izbegavati pisanje i dr.; i sl; itd; tri tačke i slične skraćenice.
+⦁	Za svako prvo pojavljivanje engleskih akronima u tekstu, u zagradi dati pun naziv: npr. CSS (engl. Cascading Style Sheets). Dalje u tekstu koristiti samo akronim bez navođenja punog naziva u zagradama.
+⦁	Proveriti originalnost na www.plagscan.com platformi. Proverava se samo tekst teorijskog dela (Rezime, Uvod, Metode, Zaključak). 
+⦁	Sa završetkom aplikacije i dokumentacije, poslati mentoru sledeće:
+1.	Izvorne fajlove aplikacije;
+2.	Bazu podataka;
+3.	txt dokument sa korisničkim pristupima; jednog registrovanog korisnika, moderatora, administratora i drugih rola;
+4.	dokumentaciju u word-u i pdf-u sa nazivom prema Uputstvu;
+5.	PlagScan izveštaj provere na originalnost.
