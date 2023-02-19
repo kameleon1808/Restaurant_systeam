@@ -61,6 +61,7 @@
                                             {{ $a->price }} RSD
                                         </td>
                                         <td class="edd_cart_actions">
+                                            <form></form>
                                             <form action="{{ route('user.remove') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $a->id }}">
@@ -69,12 +70,12 @@
                                         </td>
 
                                         <td class="edd_cart_actions">
+
                                             <form action="{{ route('user.update-qty') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $a->id }}">
                                                 <input type="hidden" name="article_id" value="{{ $a->article_id }}">
                                                 {{-- <input type="hidden" name="price" value="{{ $a->price }}"> --}}
-
                                                 <input type="numeric" name="new_qty" value="{{ $a->prod_qty }}">
 
                                                 <button class="edd_cart_remove_item_btn" type="submit">Change qty</button>
