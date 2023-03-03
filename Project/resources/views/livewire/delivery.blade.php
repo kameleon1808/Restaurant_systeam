@@ -58,19 +58,20 @@
                         @endif
                     </td>
                     <td> {{-- Dostavljeno --}}
-                        @if ($d->delivered != 1)
+                        @if ($d->delievered != 1)
                             @if ($d->canceled == 0)
                                 <form action="{{ route('boss.finishDelivery') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="ord_id" value="{{ $d->id }}">
                                     <button type="submit" class="btn btn-outline-dark"
-                                        data-mdb-ripple-color="dark">Zavrsi isporuku</button>
+                                        data-mdb-ripple-color="dark">Zavrsi isporukuu</button>
                                 </form>
                             @else
                                 <p></p>
                             @endif
-                        @elseif($d->delivered != 0)
-                            <button>Isporuceno</button>
+                        @elseif($d->delievered != 0)
+                            <button type="button" class="btn btn-outline-danger"
+                                data-mdb-ripple-color="dark">Isporuceno</button>
                         @endif
                     </td>
                     <td> {{-- Otkazano --}}
